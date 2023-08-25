@@ -4,7 +4,7 @@ import {
   getFeedPosts,
   likePost,
 } from "../controllers/postController.js";
-
+import { verifyToken } from "../middlewares/auth.js";
 const router = express.Router();
 
 // ?READ

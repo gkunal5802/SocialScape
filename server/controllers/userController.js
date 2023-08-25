@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../models/userModel.js";
 
 // !READ
 export const getUser = async (req, res) => {
@@ -36,7 +36,7 @@ export const getUserFriends = async (req, res) => {
 };
 
 // !UPDATE
-export const addRemoveFriends = async (req, res) => {
+export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
     const user = await User.findById(id);
