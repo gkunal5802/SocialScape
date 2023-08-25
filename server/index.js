@@ -14,6 +14,9 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 import { verifyToken } from "./middlewares/auth.js";
+import Posts from "./models/postModel.js";
+import User from "./models/userModel.js";
+import { posts, users } from "./data/index.js";
 
 //?=========================================================================
 //?=========================================================================
@@ -85,5 +88,10 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(app.listen(PORT, () => console.log(`App running on port ${PORT}`)))
+  .then(() => {
+    app.listen(PORT, () => console.log(`App running on port ${PORT}`));
+    // ADD THIS ONE TIME
+    // User.insertMany(users);
+    // Posts.insertMany(posts);
+  })
   .catch((error) => console.log(`${error} 💥💥`));
