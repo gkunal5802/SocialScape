@@ -9,10 +9,15 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { register } from "./controllers/authController.js";
+import { createPost } from "./controllers/postController.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
+import { verifyToken } from "./middlewares/auth.js";
 
-//? CONFIGURATIONS OR MIDDLEWARES
+//?=========================================================================
+//?=========================================================================
+//! ----------------CONFIGURATIONS OR MIDDLEWARES---------------------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
@@ -43,7 +48,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // !This middleware serves static files, such as images, stylesheets, and JavaScript files, from a specified directory (public/assets in this case) when requested through the specified route (/assets in this case).
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-// ?FILE STORAGE
+//?=====================================================
+//?=====================================================
+//! ----------------FILE STORAGE------------------------
+
 const storage = multer.diskStorage({
   // cb: this will save files in speicified destination folder like: public/assets
   destination: function (req, file, cb) {
@@ -56,15 +64,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// ?ROUTES WITH FILES
-app.post("/auth/register", upload.single("picture"), register);
+//?=====================================================
+//?=====================================================
+//!---------------ROUTES WITH FILES---------------------
 
+app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 // ?ROUTES
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-// ?MONGOOSE SETUP
-const PORT = process.env.PORT || 6000;
+app.use("/posts", postRoutes);
 
+//?===================================================
+//?===================================================
+//!----------------MONGOOSE SETUP---------------------
+
+const PORT = process.env.PORT || 6000;
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
