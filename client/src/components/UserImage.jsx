@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
         alt="user"
         width={size}
         height={size}
-        src={`http://localhost:3000/assets/${image}`}
+        src={`http://localhost:3001/assets/${image}`}
       />
     </Box>
   );
