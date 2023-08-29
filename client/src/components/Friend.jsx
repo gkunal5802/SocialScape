@@ -1,5 +1,5 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
-import { Box, Typography, IconButton, useTheme, Icon } from "@mui/material";
+import { Box, Typography, IconButton, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
 import FlexBetween from "./flexBetween";
@@ -19,7 +19,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  const isFriends = friends.find((friend) => friend._id === friendId);
+  const isFriends = friends?.find((friend) => friend._id === friendId);
 
   const patchFriends = async () => {
     const response = await fetch(
@@ -40,7 +40,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
-        <UserImage picture={userPicturePath} size="55px" />
+        <UserImage image={userPicturePath} size="55px" />
         <Box
           onClick={() => {
             navigate(`/profile:${friendId}`);
