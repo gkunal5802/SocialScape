@@ -10,7 +10,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
-  const friends = useSelector((state) => state.friends);
+  const friends = useSelector((state) => state.user.friends);
   const { _id } = useSelector((state) => state.user);
 
   const { palette } = useTheme();
@@ -32,7 +32,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         },
       }
     );
-
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
   };
@@ -43,7 +42,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         <UserImage image={userPicturePath} size="55px" />
         <Box
           onClick={() => {
-            navigate(`/profile:${friendId}`);
+            navigate(`/profile/${friendId}`);
             navigate(0);
           }}
         >

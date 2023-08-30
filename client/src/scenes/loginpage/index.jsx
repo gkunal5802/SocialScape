@@ -10,7 +10,7 @@ const LoginPage = () => {
       <Box
         width="100%"
         backgroundColor={theme.palette.background.alt}
-        textItems="center"
+        textAlign="center"
         p="1rem 6%"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">

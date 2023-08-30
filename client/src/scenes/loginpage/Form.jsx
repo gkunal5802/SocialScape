@@ -125,7 +125,7 @@ const Form = () => {
           <Box
             display="grid"
             gap="30px"
-            gridTemplateColumn="repeat(4,minmax(0,1fr))"
+            gridtemplatecolumn="repeat(4,minmax(0,1fr))"
             sx={{
               "& > div": { gridColumn: isMobileScreen ? undefined : "span 4" },
             }}

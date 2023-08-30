@@ -47,7 +47,6 @@ const PostWidget = ({
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
   };
-
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
@@ -59,6 +58,7 @@ const PostWidget = ({
       <Typography color={main} mt="1rem">
         {description}
       </Typography>
+
       {picturePath && (
         <img
           width="100%"
@@ -68,7 +68,6 @@ const PostWidget = ({
           src={`http://localhost:3001/assets/${picturePath}`}
         />
       )}
-
       <FlexBetween gap="0.25rem">
         <FlexBetween gap="1rem">
           {/* LIKES SECTION */}
@@ -96,7 +95,6 @@ const PostWidget = ({
           <ShareOutlined />
         </IconButton>
       </FlexBetween>
-
       {isComment && (
         <Box mt="0.5rem">
           {comments.map((comment, i) => (

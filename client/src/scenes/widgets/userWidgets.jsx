@@ -55,7 +55,7 @@ const UserWidget = ({ userId, picturePath }) => {
         gap="0.5rem"
         pb="1.1rem"
         onClick={() => {
-          navigate("/profile/:userId");
+          navigate(`/profile/${userId}`);
         }}
       >
         <FlexBetween gap="1rem">
@@ -74,7 +74,9 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends?.length} friends</Typography>
+            <Typography color={medium}>
+              {friends?.length} {friends?.length > 1 ? "friends" : "friend"}
+            </Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
