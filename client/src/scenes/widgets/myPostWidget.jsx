@@ -6,7 +6,6 @@ import {
   MicOutlined,
   MoreHorizOutlined,
   AttachFileOutlined,
-  Api,
 } from "@mui/icons-material";
 import {
   Box,
@@ -55,7 +54,7 @@ const MyPostWidget = ({ picturePath }) => {
     }
     const { data } = await api.uploadPost(formData);
     dispatch(setPosts({ posts: data }));
-   
+
     setImage(null);
     setPost("");
   };
