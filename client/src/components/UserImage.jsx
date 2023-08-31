@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { ASSETURL } from "URLS/assetsUrl";
 
 const UserImage = ({ image, size = "60px" }) => {
   return (
@@ -8,7 +9,7 @@ const UserImage = ({ image, size = "60px" }) => {
         alt="user"
         width={size}
         height={size}
-        src={`http://localhost:3001/assets/${image}`}
+        src={`${ASSETURL}/${image}`}
       />
     </Box>
   );

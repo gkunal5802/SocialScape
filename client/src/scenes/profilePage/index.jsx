@@ -7,6 +7,7 @@ import MyPostWidget from "scenes/widgets/myPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import UserWidget from "scenes/widgets/userWidgets";
 import FriendListWidget from "scenes/widgets/friendListWidget";
+import * as api from "api/api";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -15,13 +16,15 @@ const ProfilePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await response.json();
-    setUser(data);
+    try {
+      if (token) {
+        api.setAuthorizationHeader(token);
+      }
+      const { data } = await api.getUserData(userId);
+      setUser(data);
+    } catch (error) {
+      console.log("Message: ", error);
+    }
   };
 
   useEffect(() => {

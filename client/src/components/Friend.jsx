@@ -5,6 +5,7 @@ import { setFriends } from "state";
 import FlexBetween from "./flexBetween";
 import UserImage from "./UserImage";
 import { useNavigate } from "react-router-dom";
+import * as api from "api/api";
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const dispatch = useDispatch();
@@ -22,17 +23,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const isFriends = friends?.find((friend) => friend._id === friendId);
 
   const patchFriends = async () => {
-    const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
+    if (token) api.setAuthorizationHeader(token);
+    const { data } = await api.updateFriends(_id, friendId);
     dispatch(setFriends({ friends: data }));
   };
 

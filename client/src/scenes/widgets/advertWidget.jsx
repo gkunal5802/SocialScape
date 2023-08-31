@@ -1,6 +1,7 @@
 import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/flexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
+import { ASSETURL } from "URLS/assetsUrl";
 
 const AdvertWidget = () => {
   const { palette } = useTheme();
@@ -21,7 +22,7 @@ const AdvertWidget = () => {
         height="auto"
         alt="Advert"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
-        src="http://localhost:3001/assets/info4.jpeg"
+        src={`${ASSETURL}/info4.jpeg`}
       />
       <FlexBetween>
         <Typography color={main}>MikaCosmetics</Typography>
