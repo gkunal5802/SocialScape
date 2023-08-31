@@ -19,7 +19,7 @@
     "nodemon": "^3.0.1"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": ">=16.16.0"
