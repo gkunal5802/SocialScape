@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:3001" });
+const API = axios.create({ baseURL: "https://socialscape-xpo5.onrender.com" });
 
 export const setAuthorizationHeader = (token) => {
   API.defaults.headers.common["Authorization"] = `Bearer ${token}`;
