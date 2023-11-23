@@ -16,3 +16,6 @@ This application is MERN app built using Node,Express,Mongodb,React.
 # Log in to application using following credentials
 email: `fakeman@gmail.com`
 password: `pass123`
+
+# Hosted Project URL
+[https://socialscape-gkunal05.netlify.app/]
